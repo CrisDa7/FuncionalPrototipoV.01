@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { atletas, evaluacionesAntropometricas } from '../data/atletas';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface EvaluacionesProps {
   onViewAtleta: (atletaId: string) => void;

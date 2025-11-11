@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+const fs = require('fs')
+const path = require('path')
 
 function walk(dir, cb) {
   const entries = fs.readdirSync(dir, { withFileTypes: true })
@@ -17,7 +17,7 @@ function walk(dir, cb) {
 function fixFile(file) {
   let src = fs.readFileSync(file, 'utf8')
   const orig = src
-  // Replace imports like 'package' or "@scope/pkg" with 'package' / '@scope/pkg'
+  // Replace imports like 'package@1.2.3' or "@scope/pkg@1.2.3" with 'package' / '@scope/pkg'
   // Regex: match ' or " then group package@version then closing quote
   src = src.replace(/(['\"])((?:@[^\/\'\"]+\/[^\'\"]+|[^\'\"]+?)@\d+(?:\.\d+){0,2})(['\"])/g, (m, q1, pkgVer, q2) => {
     // Remove the last @version suffix

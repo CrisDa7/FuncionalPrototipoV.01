@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Checkbox } from './ui/checkbox';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { atletas } from '../data/atletas';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 export function Asistencia() {
   const [date, setDate] = useState<Date>(new Date());

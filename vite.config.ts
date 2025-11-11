@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // Vite plugin to strip version suffixes from package import specifiers
-// e.g. "lucide-react@0.487.0" -> "lucide-react" and
-// "@radix-ui/react-label@2.1.2" -> "@radix-ui/react-label"
+// e.g. "lucide-react" -> "lucide-react" and
+// "@radix-ui/react-label" -> "@radix-ui/react-label"
 function stripVersionImports() {
   return {
     name: 'strip-version-imports',
