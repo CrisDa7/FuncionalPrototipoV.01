@@ -139,28 +139,28 @@ export function Horarios() {
   };
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 sm:p-6 md:p-8 w-full">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <h1 className="text-3xl text-gray-900 mb-2">Gestión de Horarios</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl sm:text-3xl text-gray-900 mb-2">Gestión de Horarios</h1>
+          <p className="text-xs sm:text-sm text-gray-600">
             Administra los horarios de entrenamiento
           </p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-[#c62828] hover:bg-[#a61b1b]">
+            <Button className="bg-[#c62828] hover:bg-[#a61b1b] h-10 sm:h-auto text-sm w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" />
-              Nuevo Horario
+              <span className="text-xs sm:text-base">Nuevo</span>
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="max-w-2xl max-h-screen overflow-auto">
             <DialogHeader>
-              <DialogTitle>Crear Nuevo Horario</DialogTitle>
+              <DialogTitle className="text-lg sm:text-xl">Nuevo Horario</DialogTitle>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               <div>
-                <Label htmlFor="programa">Nombre del Programa</Label>
+                <Label htmlFor="programa" className="text-xs sm:text-sm">Programa</Label>
                 <Input
                   id="programa"
                   value={formData.programa}
@@ -168,20 +168,20 @@ export function Horarios() {
                     setFormData({ ...formData, programa: e.target.value })
                   }
                   required
-                  placeholder="Ej: Fuerza Funcional"
-                  className="mt-1"
+                  placeholder="Fuerza Funcional"
+                  className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                 />
               </div>
 
               <div>
-                <Label>Días de la Semana</Label>
+                <Label className="text-xs sm:text-sm">Días</Label>
                 <div className="grid grid-cols-3 gap-2 mt-2">
                   {diasSemana.map((dia) => (
                     <button
                       key={dia}
                       type="button"
                       onClick={() => handleToggleDia(dia)}
-                      className={`px-3 py-2 rounded border transition-colors ${
+                      className={`px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm rounded border transition-colors ${
                         formData.dias.includes(dia)
                           ? 'bg-[#c62828] text-white border-[#c62828]'
                           : 'bg-white text-gray-700 border-gray-300 hover:border-[#c62828]'

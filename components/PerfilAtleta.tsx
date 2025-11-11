@@ -63,98 +63,99 @@ export function PerfilAtleta({ atletaId, onBack }: PerfilAtletaProps) {
   };
 
   return (
-    <div className="p-8">
-      <div className="mb-6">
-        <Button variant="ghost" onClick={onBack} className="mb-4">
+    <div className="p-4 sm:p-6 md:p-8 w-full">
+      <div className="mb-6 sm:mb-8">
+        <Button variant="ghost" onClick={onBack} className="mb-4 h-8 sm:h-10 text-xs sm:text-sm">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Volver a Participantes
+          Volver
         </Button>
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl text-gray-900 mb-2">
-              Perfil de {atleta.nombre}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl text-gray-900 mb-2 truncate">
+              {atleta.nombre}
             </h1>
-            <p className="text-gray-600">{atleta.tipo} • {atleta.edad} años</p>
+            <p className="text-xs sm:text-sm text-gray-600">{atleta.tipo} • {atleta.edad} años</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-shrink-0">
             <Button
               onClick={() => setIsEditing(!isEditing)}
-              className="bg-gray-600 hover:bg-gray-700"
+              className="bg-gray-600 hover:bg-gray-700 h-9 sm:h-10 text-xs sm:text-sm"
             >
-              <Edit className="w-4 h-4 mr-2" />
-              {isEditing ? 'Cancelar' : 'Editar'}
+              <Edit className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">{isEditing ? 'Cancelar' : 'Editar'}</span>
+              <span className="sm:hidden">{isEditing ? 'X' : '✏'}</span>
             </Button>
-            <Button className="bg-[#c62828] hover:bg-[#a61b1b]">
-              <FileText className="w-4 h-4 mr-2" />
-              Generar Reporte
+            <Button className="bg-[#c62828] hover:bg-[#a61b1b] h-9 sm:h-10 text-xs sm:text-sm">
+              <FileText className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Reporte</span>
             </Button>
           </div>
         </div>
       </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="datos">Datos Personales</TabsTrigger>
-          <TabsTrigger value="antropometria">Evaluación Física</TabsTrigger>
-          <TabsTrigger value="tests">Tests Físicos</TabsTrigger>
-          <TabsTrigger value="historial">Historial</TabsTrigger>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full">
+          <TabsTrigger value="datos" className="text-xs sm:text-sm">Datos</TabsTrigger>
+          <TabsTrigger value="antropometria" className="text-xs sm:text-sm">Física</TabsTrigger>
+          <TabsTrigger value="tests" className="text-xs sm:text-sm">Tests</TabsTrigger>
+          <TabsTrigger value="historial" className="text-xs sm:text-sm">Historial</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="datos" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <TabsContent value="datos" className="mt-4 sm:mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <Card>
-              <CardHeader>
-                <CardTitle>Información Personal</CardTitle>
+              <CardHeader className="p-3 sm:p-6">
+                <CardTitle className="text-base sm:text-lg">Información Personal</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <CardContent className="p-3 sm:p-6 pt-0 space-y-3 sm:space-y-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                   <div>
-                    <Label className="text-gray-600">Nombre completo</Label>
-                    <p className="mt-1">{atleta.nombre}</p>
+                    <Label className="text-gray-600 text-xs">Nombre</Label>
+                    <p className="mt-1 truncate">{atleta.nombre}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-600">DNI</Label>
+                    <Label className="text-gray-600 text-xs">DNI</Label>
                     <p className="mt-1">{atleta.dni}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-600">Fecha de nacimiento</Label>
-                    <p className="mt-1">{new Date(atleta.fechaNacimiento).toLocaleDateString('es-ES')}</p>
+                    <Label className="text-gray-600 text-xs">Nacimiento</Label>
+                    <p className="mt-1">{new Date(atleta.fechaNacimiento).toLocaleDateString('es-ES', {year: '2-digit', month: '2-digit', day: '2-digit'})}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-600">Género</Label>
+                    <Label className="text-gray-600 text-xs">Género</Label>
                     <p className="mt-1">{atleta.genero}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-600">Grupo sanguíneo</Label>
+                    <Label className="text-gray-600 text-xs">Sangre</Label>
                     <p className="mt-1">{atleta.grupoSanguineo}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-600">Teléfono</Label>
-                    <p className="mt-1">{atleta.telefono}</p>
+                    <Label className="text-gray-600 text-xs">Teléfono</Label>
+                    <p className="mt-1 truncate">{atleta.telefono}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Card>
-              <CardHeader>
-                <CardTitle>Información de Contacto</CardTitle>
+              <CardHeader className="p-3 sm:p-6">
+                <CardTitle className="text-base sm:text-lg">Contacto</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="p-3 sm:p-6 pt-0 space-y-2 sm:space-y-3 text-xs sm:text-sm">
                 <div>
-                  <Label className="text-gray-600">Correo electrónico</Label>
-                  <p className="mt-1">{atleta.correo}</p>
+                  <Label className="text-gray-600 text-xs">Correo</Label>
+                  <p className="mt-1 truncate text-xs">{atleta.correo}</p>
                 </div>
                 <div>
-                  <Label className="text-gray-600">Dirección</Label>
-                  <p className="mt-1">{atleta.direccion}</p>
+                  <Label className="text-gray-600 text-xs">Dirección</Label>
+                  <p className="mt-1 line-clamp-2 text-xs">{atleta.direccion}</p>
                 </div>
                 <div>
-                  <Label className="text-gray-600">Contacto de emergencia</Label>
-                  <p className="mt-1">{atleta.contactoEmergencia}</p>
+                  <Label className="text-gray-600 text-xs">Emergencia</Label>
+                  <p className="mt-1 truncate">{atleta.contactoEmergencia}</p>
                 </div>
                 <div>
-                  <Label className="text-gray-600">Teléfono de emergencia</Label>
+                  <Label className="text-gray-600 text-xs">Teléfono Em.</Label>
                   <p className="mt-1">{atleta.telefonoEmergencia}</p>
                 </div>
               </CardContent>
@@ -162,17 +163,17 @@ export function PerfilAtleta({ atletaId, onBack }: PerfilAtletaProps) {
           </div>
         </TabsContent>
 
-        <TabsContent value="antropometria" className="mt-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <TabsContent value="antropometria" className="mt-4 sm:mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             <div className="lg:col-span-2">
               <Card>
-                <CardHeader>
-                  <CardTitle>Mediciones Antropométricas</CardTitle>
+                <CardHeader className="p-3 sm:p-6">
+                  <CardTitle className="text-base sm:text-lg">Mediciones Antropométricas</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <CardContent className="p-3 sm:p-6 pt-0">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
                     <div>
-                      <Label htmlFor="peso">Peso (kg)</Label>
+                      <Label htmlFor="peso" className="text-xs sm:text-sm">Peso (kg)</Label>
                       <Input
                         id="peso"
                         type="number"
@@ -181,11 +182,11 @@ export function PerfilAtleta({ atletaId, onBack }: PerfilAtletaProps) {
                           setFormData({ ...formData, peso: parseFloat(e.target.value) })
                         }
                         disabled={!isEditing}
-                        className="mt-1"
+                        className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="talla">Talla (cm)</Label>
+                      <Label htmlFor="talla" className="text-xs sm:text-sm">Talla (cm)</Label>
                       <Input
                         id="talla"
                         type="number"
@@ -194,11 +195,11 @@ export function PerfilAtleta({ atletaId, onBack }: PerfilAtletaProps) {
                           setFormData({ ...formData, talla: parseFloat(e.target.value) })
                         }
                         disabled={!isEditing}
-                        className="mt-1"
+                        className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="envergadura">Envergadura (cm)</Label>
+                      <Label htmlFor="envergadura" className="text-xs sm:text-sm">Env. (cm)</Label>
                       <Input
                         id="envergadura"
                         type="number"
@@ -207,11 +208,11 @@ export function PerfilAtleta({ atletaId, onBack }: PerfilAtletaProps) {
                           setFormData({ ...formData, envergadura: parseFloat(e.target.value) })
                         }
                         disabled={!isEditing}
-                        className="mt-1"
+                        className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="cintura">Cintura (cm)</Label>
+                      <Label htmlFor="cintura" className="text-xs sm:text-sm">Cintura (cm)</Label>
                       <Input
                         id="cintura"
                         type="number"

@@ -65,33 +65,33 @@ export function Evaluaciones({ onViewAtleta }: EvaluacionesProps) {
     : '0.0';
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 sm:p-6 md:p-8 w-full">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <h1 className="text-3xl text-gray-900 mb-2">Gestión de Evaluaciones</h1>
-          <p className="text-gray-600">
-            Registra y visualiza evaluaciones antropométricas
+          <h1 className="text-2xl sm:text-3xl text-gray-900 mb-2">Gestión de Evaluaciones</h1>
+          <p className="text-xs sm:text-sm text-gray-600">
+            Registra evaluaciones antropométricas
           </p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-[#c62828] hover:bg-[#a61b1b]">
+            <Button className="bg-[#c62828] hover:bg-[#a61b1b] h-10 sm:h-auto text-sm w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" />
-              Nueva Evaluación
+              <span className="text-xs sm:text-base">Nueva</span>
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="max-w-2xl max-h-screen overflow-auto">
             <DialogHeader>
-              <DialogTitle>Registrar Nueva Evaluación</DialogTitle>
+              <DialogTitle className="text-lg sm:text-xl">Nueva Evaluación</DialogTitle>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               <div>
-                <Label htmlFor="atleta">Seleccionar Atleta</Label>
+                <Label htmlFor="atleta" className="text-xs sm:text-sm">Atleta</Label>
                 <select
                   id="atleta"
                   value={selectedAtleta}
                   onChange={(e) => setSelectedAtleta(e.target.value)}
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full mt-1 px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-md"
                   required
                 >
                   <option value="">Selecciona un atleta</option>
@@ -103,9 +103,9 @@ export function Evaluaciones({ onViewAtleta }: EvaluacionesProps) {
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <div>
-                  <Label htmlFor="peso">Peso (kg)</Label>
+                  <Label htmlFor="peso" className="text-xs sm:text-sm">Peso (kg)</Label>
                   <Input
                     id="peso"
                     type="number"
@@ -113,11 +113,11 @@ export function Evaluaciones({ onViewAtleta }: EvaluacionesProps) {
                     value={formData.peso}
                     onChange={(e) => setFormData({ ...formData, peso: e.target.value })}
                     required
-                    className="mt-1"
+                    className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="talla">Talla (cm)</Label>
+                  <Label htmlFor="talla" className="text-xs sm:text-sm">Talla (cm)</Label>
                   <Input
                     id="talla"
                     type="number"
@@ -125,11 +125,11 @@ export function Evaluaciones({ onViewAtleta }: EvaluacionesProps) {
                     value={formData.talla}
                     onChange={(e) => setFormData({ ...formData, talla: e.target.value })}
                     required
-                    className="mt-1"
+                    className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="envergadura">Envergadura (cm)</Label>
+                  <Label htmlFor="envergadura" className="text-xs sm:text-sm">Env. (cm)</Label>
                   <Input
                     id="envergadura"
                     type="number"
@@ -137,11 +137,11 @@ export function Evaluaciones({ onViewAtleta }: EvaluacionesProps) {
                     value={formData.envergadura}
                     onChange={(e) => setFormData({ ...formData, envergadura: e.target.value })}
                     required
-                    className="mt-1"
+                    className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="cintura">Cintura (cm)</Label>
+                  <Label htmlFor="cintura" className="text-xs sm:text-sm">Cintura (cm)</Label>
                   <Input
                     id="cintura"
                     type="number"
@@ -149,11 +149,11 @@ export function Evaluaciones({ onViewAtleta }: EvaluacionesProps) {
                     value={formData.cintura}
                     onChange={(e) => setFormData({ ...formData, cintura: e.target.value })}
                     required
-                    className="mt-1"
+                    className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="grasa">% Grasa corporal</Label>
+                  <Label htmlFor="grasa" className="text-xs sm:text-sm">% Grasa</Label>
                   <Input
                     id="grasa"
                     type="number"
@@ -161,11 +161,11 @@ export function Evaluaciones({ onViewAtleta }: EvaluacionesProps) {
                     value={formData.grasa}
                     onChange={(e) => setFormData({ ...formData, grasa: e.target.value })}
                     required
-                    className="mt-1"
+                    className="mt-1 text-xs sm:text-sm h-8 sm:h-10"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="musculo">% Masa muscular</Label>
+                  <Label htmlFor="musculo" className="text-xs sm:text-sm">% Músculo</Label>
                   <Input
                     id="musculo"
                     type="number"

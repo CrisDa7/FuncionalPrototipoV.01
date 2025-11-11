@@ -174,42 +174,40 @@ export function Planificaciones() {
   ];
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 sm:p-6 md:p-8 w-full">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <h1 className="text-3xl text-gray-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl text-gray-900 mb-2">
             Gestión de Planificaciones
           </h1>
-          <p className="text-gray-600">
-            Organiza las planificaciones por Macro, Meso y Microciclos
+          <p className="text-xs sm:text-sm text-gray-600">
+            Organiza Macro, Meso y Microciclos
           </p>
         </div>
-        <Button className="bg-[#c62828] hover:bg-[#a61b1b]">
+        <Button className="bg-[#c62828] hover:bg-[#a61b1b] h-10 sm:h-auto text-sm w-full sm:w-auto">
           <Plus className="w-4 h-4 mr-2" />
-          Nueva Planificación
+          <span className="text-xs sm:text-base">Nueva</span>
         </Button>
       </div>
 
       {/* Info Alert */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex items-start gap-3">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-6 sm:mb-8 flex items-start gap-2 sm:gap-3">
         <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
         <div>
-          <p className="text-sm text-blue-900">
-            Las planificaciones se organizan jerárquicamente: Macrociclos contienen
-            Mesociclos, y cada Mesociclo contiene Microciclos con las actividades
-            semanales.
+          <p className="text-xs sm:text-sm text-blue-900">
+            Macrociclos → Mesociclos → Microciclos con actividades semanales.
           </p>
         </div>
       </div>
 
-      <Tabs defaultValue="jerarquica">
-        <TabsList>
-          <TabsTrigger value="jerarquica">Vista Jerárquica</TabsTrigger>
-          <TabsTrigger value="calendario">Vista Calendario</TabsTrigger>
+      <Tabs defaultValue="jerarquica" className="w-full">
+        <TabsList className="grid grid-cols-2 w-full sm:w-auto">
+          <TabsTrigger value="jerarquica" className="text-xs sm:text-sm">Jerárquica</TabsTrigger>
+          <TabsTrigger value="calendario" className="text-xs sm:text-sm">Calendario</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="jerarquica" className="mt-6">
-          <div className="space-y-4">
+        <TabsContent value="jerarquica" className="mt-4 sm:mt-6">
+          <div className="space-y-3 sm:space-y-4">
             {macrociclos.map((macro) => (
               <Card key={macro.id}>
                 <Collapsible

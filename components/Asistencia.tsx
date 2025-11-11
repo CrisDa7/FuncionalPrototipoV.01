@@ -33,35 +33,35 @@ export function Asistencia() {
   };
 
   return (
-    <div className="p-8">
-      <div className="mb-6">
-        <h1 className="text-3xl text-gray-900 mb-2">
+    <div className="p-4 sm:p-6 md:p-8 w-full">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl text-gray-900 mb-2">
           Gestión de Asistencia
         </h1>
-        <p className="text-gray-600">
+        <p className="text-sm sm:text-base text-gray-600">
           Registra la asistencia del grupo Fuerza Funcional
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           {/* Date Selector */}
           <Card>
-            <CardHeader>
-              <CardTitle>Seleccionar Fecha</CardTitle>
+            <CardHeader className="p-3 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Seleccionar Fecha</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-3 sm:p-6 pt-0">
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" className="w-full md:w-auto">
+                  <Button variant="outline" className="w-full h-10 sm:h-auto text-xs sm:text-sm">
                     <CalendarIcon className="w-4 h-4 mr-2" />
-                    {date.toLocaleDateString('es-ES', {
-                      weekday: 'long',
+                    <span className="truncate">{date.toLocaleDateString('es-ES', {
+                      weekday: 'short',
                       year: 'numeric',
-                      month: 'long',
+                      month: 'short',
                       day: 'numeric',
-                    })}
+                    })}</span>
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -78,38 +78,38 @@ export function Asistencia() {
 
           {/* Attendance List */}
           <Card>
-            <CardHeader>
-              <CardTitle>Lista de Participantes</CardTitle>
+            <CardHeader className="p-3 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Lista de Participantes</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
+            <CardContent className="p-3 sm:p-6 pt-0">
+              <div className="space-y-2 sm:space-y-3">
                 {atletas.map((atleta) => {
                   const presente = asistencias[atleta.id] || false;
                   
                   return (
                     <div
                       key={atleta.id}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                      className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors gap-2"
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
-                          <Users className="w-6 h-6 text-gray-600" />
+                      <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
                         </div>
-                        <div>
-                          <p className="text-gray-900">{atleta.nombre}</p>
-                          <p className="text-sm text-gray-600">{atleta.tipo}</p>
+                        <div className="min-w-0">
+                          <p className="text-xs sm:text-sm text-gray-900 truncate">{atleta.nombre}</p>
+                          <p className="text-xs text-gray-600">{atleta.tipo}</p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                         {presente ? (
-                          <span className="text-sm text-green-600 flex items-center gap-1">
+                          <span className="text-xs text-green-600 flex items-center gap-1 whitespace-nowrap">
                             <CheckCircle2 className="w-4 h-4" />
-                            Presente
+                            <span className="hidden sm:inline">Presente</span>
                           </span>
                         ) : (
-                          <span className="text-sm text-red-600 flex items-center gap-1">
+                          <span className="text-xs text-red-600 flex items-center gap-1 whitespace-nowrap">
                             <XCircle className="w-4 h-4" />
-                            Ausente
+                            <span className="hidden sm:inline">Ausente</span>
                           </span>
                         )}
                         <Checkbox
@@ -122,10 +122,10 @@ export function Asistencia() {
                 })}
               </div>
 
-              <div className="mt-6 pt-6 border-t">
+              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t">
                 <Button
                   onClick={handleGuardarAsistencia}
-                  className="w-full bg-[#c62828] hover:bg-[#a61b1b]"
+                  className="w-full bg-[#c62828] hover:bg-[#a61b1b] h-10 sm:h-auto text-sm"
                 >
                   Guardar Asistencia
                 </Button>
@@ -135,63 +135,63 @@ export function Asistencia() {
         </div>
 
         {/* Stats Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <Card>
-            <CardHeader>
-              <CardTitle>Resumen del Día</CardTitle>
+            <CardHeader className="p-3 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Resumen del Día</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <p className="text-sm text-green-700 mb-1">Presentes</p>
-                <p className="text-4xl text-green-600">{presentes}</p>
+            <CardContent className="p-3 sm:p-6 pt-0 space-y-3">
+              <div className="text-center p-3 sm:p-4 bg-green-50 rounded-lg">
+                <p className="text-xs sm:text-sm text-green-700 mb-1">Presentes</p>
+                <p className="text-2xl sm:text-4xl text-green-600 font-bold">{presentes}</p>
               </div>
-              <div className="text-center p-4 bg-red-50 rounded-lg">
-                <p className="text-sm text-red-700 mb-1">Ausentes</p>
-                <p className="text-4xl text-red-600">{ausentes}</p>
+              <div className="text-center p-3 sm:p-4 bg-red-50 rounded-lg">
+                <p className="text-xs sm:text-sm text-red-700 mb-1">Ausentes</p>
+                <p className="text-2xl sm:text-4xl text-red-600 font-bold">{ausentes}</p>
               </div>
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-700 mb-1">Porcentaje</p>
-                <p className="text-4xl text-blue-600">{porcentaje}%</p>
+              <div className="text-center p-3 sm:p-4 bg-blue-50 rounded-lg">
+                <p className="text-xs sm:text-sm text-blue-700 mb-1">Porcentaje</p>
+                <p className="text-2xl sm:text-4xl text-blue-600 font-bold">{porcentaje}%</p>
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle>Estadísticas del Mes</CardTitle>
+            <CardHeader className="p-3 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Estadísticas del Mes</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="p-3 sm:p-6 pt-0 space-y-2 sm:space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Promedio de asistencia</span>
-                <span className="text-gray-900">87%</span>
+                <span className="text-xs sm:text-sm text-gray-600">Promedio</span>
+                <span className="text-sm sm:text-base text-gray-900 font-semibold">87%</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Total de sesiones</span>
-                <span className="text-gray-900">16</span>
+                <span className="text-xs sm:text-sm text-gray-600">Sesiones</span>
+                <span className="text-sm sm:text-base text-gray-900 font-semibold">16</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Participantes activos</span>
-                <span className="text-gray-900">4</span>
+                <span className="text-xs sm:text-sm text-gray-600">Activos</span>
+                <span className="text-sm sm:text-base text-gray-900 font-semibold">4</span>
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle>Asistencia Individual</CardTitle>
+            <CardHeader className="p-3 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Asistencia Individual</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="p-3 sm:p-6 pt-0 space-y-2 sm:space-y-3">
               {atletas.map((atleta) => (
-                <div key={atleta.id} className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">{atleta.nombre.split(' ')[0]}</span>
-                  <div className="flex items-center gap-2">
-                    <div className="w-24 bg-gray-200 rounded-full h-2">
+                <div key={atleta.id} className="flex justify-between items-center gap-2">
+                  <span className="text-xs sm:text-sm text-gray-700 truncate">{atleta.nombre.split(' ')[0]}</span>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div className="w-16 sm:w-24 bg-gray-200 rounded-full h-2 flex-shrink-0">
                       <div
                         className="bg-[#c62828] h-2 rounded-full"
                         style={{ width: `${85 + Math.random() * 15}%` }}
                       ></div>
                     </div>
-                    <span className="text-sm text-gray-600 w-12 text-right">
+                    <span className="text-xs text-gray-600 w-10 text-right flex-shrink-0">
                       {Math.round(85 + Math.random() * 15)}%
                     </span>
                   </div>

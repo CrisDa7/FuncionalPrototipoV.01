@@ -1,11 +1,9 @@
 node_modules/
-.next/
 dist/
 .env
 .vscode/
 .DS_Store
 .idea/
-next-env.d.ts
 *.log
 npm-debug.log*
 .pnpm-debug.log*
