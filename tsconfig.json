@@ -2,17 +2,28 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "ESNext"],
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
